@@ -12,7 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM multiarch/alpine:armhf-v3.12
+FROM alpine:3.12
+ARG TARGETPLATFORM=linux/amd64
 RUN apk update --no-cache && apk add ca-certificates
-COPY nfs-subdir-external-provisioner /nfs-subdir-external-provisioner
+COPY ${TARGETPLATFORM}/nfs-subdir-external-provisioner /nfs-subdir-external-provisioner
 ENTRYPOINT ["/nfs-subdir-external-provisioner"]
